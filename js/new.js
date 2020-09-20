@@ -8,7 +8,7 @@ var starty=0;
 var endx=0;
 var endy=0;
 
-var documentWidth=window.screen.availWidth;
+var documentWidth=window.screen.availWidth;//屏幕宽度
 var gridContainerWidth=0.92*documentWidth;
 var cellSideLength=0.18*documentWidth;
 var cellspace=0.04*documentWidth;
@@ -105,7 +105,7 @@ function updateboardview() {
         }
         $(".number-cell").css({
             "line-height":cellSideLength+"px",
-            "font-size":0.06*cellSideLength+"px"
+            "font-size":0.6*cellSideLength+"px"
         });
     }
     
