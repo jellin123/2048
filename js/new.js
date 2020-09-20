@@ -105,7 +105,7 @@ function updateboardview() {
         }
         $(".number-cell").css({
             "line-height":cellSideLength+"px",
-            "font-size":0.6*cellSideLength+"px"
+            "font-size":0.5*cellSideLength+"px"
         });
     }
     
