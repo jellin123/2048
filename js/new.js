@@ -42,6 +42,7 @@ function newgame() {
     $(".gird-cell").remove();
     init();//初始化棋盘格
     $("#score").text("0");
+    score=0;
     newNumber();//随机生成两个数
     newNumber();
 }
