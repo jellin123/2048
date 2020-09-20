@@ -2,9 +2,42 @@
 var board = new Array();//生成一维数组
 var score=0;//分值
 var hasConflicted=new Array();//每个小格子发生碰撞的次数
+
+var startx=0;
+var starty=0;
+var endx=0;
+var endy=0;
+
+var documentWidth=window.screen.availWidth;
+var gridContainerWidth=0.92*documentWidth;
+var cellSideLength=0.18*documentWidth;
+var cellspace=0.04*documentWidth;
+
 $(function () {
+    prepareForMobile();
     newgame();//开始新游戏
 });
+
+function prepareForMobile(){
+    if(documentWidth>500){
+        gridContainerWidth=500;
+        cellspace=20;
+        cellSideLength=100;
+    }
+
+    $(".content").css({
+        "width":gridContainerWidth-2*cellspace,
+        "height":gridContainerWidth-2*cellspace,
+        "padding":cellspace,
+        "border-radius":0.02*gridContainerWidth
+    });
+
+    $(".gird-cell").css({
+        "width":cellSideLength,
+        "height":cellSideLength,
+        "border-radius":0.02*cellSideLength
+    });
+}
 function newgame() {
     $(".gird-cell").remove();
     init();//初始化棋盘格
@@ -36,10 +69,10 @@ function init() {
     updateboardview();//初始化数字格
 }
 function getPosTop(i, j) {
-    return 20 + i * 120;
+    return (cellspace+i*(cellspace+cellSideLength));
 }
 function getPosLeft(i, j) {
-    return 20 + j * 120;
+    return (cellspace+j*(cellspace+cellSideLength));
 }
 
 function updateboardview() {
@@ -53,8 +86,8 @@ function updateboardview() {
                 numbercell.css({
                     "width": "0px",
                     "height": "0px",
-                    "top": getPosTop(i, j) + 50,
-                    "left": getPosLeft(i, j) + 50,
+                    "top": getPosTop(i, j) + cellSideLength/2,
+                    "left": getPosLeft(i, j) + cellSideLength/2,
                 });
             }
             else{
@@ -71,8 +104,8 @@ function updateboardview() {
             hasConflicted[i][j]=false;
         }
         $(".number-cell").css({
-            "line-height":"100px",
-            "font-size":"45px"
+            "line-height":cellSideLength+"px",
+            "font-size":0.06*cellSideLength+"px"
         });
     }
     
@@ -120,8 +153,8 @@ function showNumberWithAnimation(i,j,num){
 
     //生成数字格动画
     numbercell.animate({
-        width:"100px",
-        height:"100px",
+        width:cellSideLength,
+        height:cellSideLength,
         top:getPosTop(i,j),
         left:getPosLeft(i,j)
     },50);

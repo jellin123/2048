@@ -35,7 +35,49 @@ $(document).keydown(function (e) {
             break;
     }
 });
+document.addEventListener("touchstart",function(event){
+    startx=event.touches[0].pageX;
+    starty=event.touches[0].pageY;
+});
+document.addEventListener("touchend",function(event){
+    endx=event.changedTouches[0].pageX;
+    endy=event.changedTouches[0].pageY;
 
+    var deltax=endx - startx;
+    var deltay=endy - starty;
+
+    if(Math.abs(deltax)<0.3*documentWidth && Math.abd(deltay)<documentWidth*0.3)
+    return;
+
+    if(Math.abs(deltax)>=Math.abs(deltay)){
+        if(deltax>0){
+            if(moveRight()){
+                setTimeout('newNumber()',210);//随机生成一个数字
+                setTimeout('isGameOver()',300);//游戏是否结束
+            }
+        }
+        else{
+            if(moveLeft()){
+                setTimeout('newNumber()',210);//随机生成一个数字
+                setTimeout('isGameOver()',300);//游戏是否结束
+            }
+        }
+    }
+    else{
+        if(deltay>0){
+            if(moveDown()){
+                setTimeout('newNumber()',210);//随机生成一个数字
+                setTimeout('isGameOver()',300);//游戏是否结束
+            }
+        }
+        else{
+            if(moveUp()){
+                setTimeout('newNumber()',210);//随机生成一个数字
+                setTimeout('isGameOver()',300);//游戏是否结束
+            }
+        }
+    }
+});
 function moveLeft(){
     if(!canMoveLeft(board))
         return false;
